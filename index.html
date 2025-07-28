@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redirecting to WhatsApp...</title>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get("names") || "Customer";
+      const rawOrder = urlParams.get("yummyCupcakes68") || "an order";
+
+      // Strip HTML tags from rawOrder
+      const plainOrder = rawOrder
+        .replace(/<[^>]*>/g, '')        // Remove HTML tags
+        .replace(/&nbsp;/g, ' ')        // Replace HTML space
+        .replace(/&amp;/g, '&')         // Replace HTML ampersand
+        .replace(/Total:/i, '\nTotal:'); // Optional: line break before Total
+
+      const message = `Hello ${name}, thank you for ordering:\n${plainOrder}\nWe will contact you soon!`;
+
+      const phone = "250796705009"; // Replace with your WhatsApp number
+      const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      window.location.href = whatsappURL;
+    </script>
+  </head>
+  <body>
+    Redirecting to WhatsApp...
+  </body>
+</html>
